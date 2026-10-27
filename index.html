@@ -223,9 +223,9 @@
 <ul>
 <li>Can be compared across outcomes in different units / scales</li>
 </ul></li>
-<li><strong>Standardized mean difference</strong>: most common effect size measure
+<li><strong>Standardized mean difference</strong>: program effect in <strong><em>standard deviation units</em></strong>
 <ul>
-<li>Difference between participant &amp; comparison group averages, in <strong><em>standard deviation units</em></strong></li>
+<li>Most common type of effect size measure</li>
 <li><strong><em>Cohen’s D</em></strong> &amp; <strong><em>Hedges’ G</em></strong> are most common standardized mean diff statistics</li>
 </ul></li>
 <li>Rules of thumb for education field research<a href="#/footnotes" class="footnote-ref" id="fnref1" role="doc-noteref" data-footnote-href="#/fn1" onclick=""><sup>1</sup></a>:
@@ -249,30 +249,33 @@
 <li>We need a <strong><em>large enough effect estimate</em></strong> that we can be <strong><em>confident it’s coming from a real effect</em></strong> and not just noise</li>
 <li>“signal-to-noise ratio”</li>
 </ul></li>
-<li><strong>Precision</strong>: how much our estimates limit noise</li>
-<li>We can increase precision by:
-<ul>
-<li>Increasing sample size</li>
-<li>Adjusting for baseline covariates</li>
-</ul></li>
 </ul>
 </section>
-<section id="statistical-significance-power" class="slide level2">
+<section id="statistical-significance-power" class="slide level2 smaller">
 <h2>Statistical Significance &amp; Power</h2>
 <ul>
-<li><strong>Statistical significance</strong>: formalized procedure for <strong><em>evaluating likelihood that effect estimates are “real”</em></strong> and not just noise</li>
-<li><strong>Statistical power</strong>: how <strong><em>likely we are to detect an effect</em></strong>, i.e., decide it’s statistically significant, given a set of factors including:
+<li><strong>Statistical significance</strong>: formalized procedure for <strong><em>evaluating likelihood that effect estimates are “real”</em></strong> and not just noise
 <ul>
-<li>Sample size</li>
+<li>If this procedure determines that the effect is “statistically significant,” we feel confident that it’s real</li>
+</ul></li>
+<li><strong>Statistical power</strong>: how <strong><em>likely we are</em></strong> to find statistical significance, aka <strong><em>detect the effect</em></strong></li>
+<li>Power is based on factors including:
+<ul>
 <li>Effect size</li>
-<li>Variation in outcomes (after adjusting for baseline covariates)</li>
+<li>Sample size</li>
+<li>Variation in outcome</li>
+</ul></li>
+<li>We can <strong><em>increase power by reducing noise</em></strong> (aka increasing <strong>precision</strong>)
+<ul>
+<li>Increase sample size</li>
+<li>Adjust for baseline covariates (to reduce outcome variation)</li>
 </ul></li>
 </ul>
 </section>
 <section id="minimum-detectable-effect-size" class="slide level2">
 <h2>Minimum Detectable Effect Size</h2>
 <ul>
-<li><strong>Minimum detectable effect size (MDES)</strong>: re-arrange the power equation to find the <strong><em>smallest effect you are likely to detect</em></strong> given the same set of factors</li>
+<li><strong>Minimum detectable effect size (MDES)</strong>: the <strong><em>smallest effect you are likely to detect</em></strong> given your power &amp; precision</li>
 <li>The <strong><em>larger the sample</em></strong>, the <strong><em>smaller your MDES</em></strong> will be
 <ul>
 <li>But, the <strong><em>more costly</em></strong> your study will be (if collecting data)</li>
@@ -378,18 +381,18 @@
 <p><a href="#/noise" style="font-size: 0.6em;">back to main slide</a></p>
 <div class="ra">
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="146" data-source-offset="-71"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 145;"><span id="cb1-146"><a href=""></a>ra_blur <span class="op">=</span> () <span class="kw">=&gt;</span> <span class="bu">document</span><span class="op">.</span><span class="at">activeElement</span><span class="op">?.</span><span class="fu">blur</span>()</span>
-<span id="cb1-147"><a href=""></a></span>
-<span id="cb1-148"><a href=""></a><span class="co">// starts at R's sample size</span></span>
-<span id="cb1-149"><a href=""></a>viewof ra_n <span class="op">=</span> {</span>
-<span id="cb1-150"><a href=""></a>  <span class="kw">const</span> input <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>([<span class="dv">100</span><span class="op">,</span> <span class="dv">1000</span><span class="op">,</span> <span class="dv">10000</span>]<span class="op">,</span> {</span>
-<span id="cb1-151"><a href=""></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Sample size"</span><span class="op">,</span></span>
-<span id="cb1-152"><a href=""></a>    <span class="dt">value</span><span class="op">:</span> ra_data<span class="op">.</span><span class="at">participate</span><span class="op">.</span><span class="at">length</span><span class="op">,</span></span>
-<span id="cb1-153"><a href=""></a>    <span class="dt">format</span><span class="op">:</span> n <span class="kw">=&gt;</span> n<span class="op">.</span><span class="fu">toLocaleString</span>()</span>
-<span id="cb1-154"><a href=""></a>  })</span>
-<span id="cb1-155"><a href=""></a>  input<span class="op">.</span><span class="fu">addEventListener</span>(<span class="st">"input"</span><span class="op">,</span> ra_blur)</span>
-<span id="cb1-156"><a href=""></a>  <span class="cf">return</span> input</span>
-<span id="cb1-157"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="147" data-source-offset="-71"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 146;"><span id="cb1-147"><a href=""></a>ra_blur <span class="op">=</span> () <span class="kw">=&gt;</span> <span class="bu">document</span><span class="op">.</span><span class="at">activeElement</span><span class="op">?.</span><span class="fu">blur</span>()</span>
+<span id="cb1-148"><a href=""></a></span>
+<span id="cb1-149"><a href=""></a><span class="co">// starts at R's sample size</span></span>
+<span id="cb1-150"><a href=""></a>viewof ra_n <span class="op">=</span> {</span>
+<span id="cb1-151"><a href=""></a>  <span class="kw">const</span> input <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">radio</span>([<span class="dv">100</span><span class="op">,</span> <span class="dv">1000</span><span class="op">,</span> <span class="dv">10000</span>]<span class="op">,</span> {</span>
+<span id="cb1-152"><a href=""></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Sample size"</span><span class="op">,</span></span>
+<span id="cb1-153"><a href=""></a>    <span class="dt">value</span><span class="op">:</span> ra_data<span class="op">.</span><span class="at">participate</span><span class="op">.</span><span class="at">length</span><span class="op">,</span></span>
+<span id="cb1-154"><a href=""></a>    <span class="dt">format</span><span class="op">:</span> n <span class="kw">=&gt;</span> n<span class="op">.</span><span class="fu">toLocaleString</span>()</span>
+<span id="cb1-155"><a href=""></a>  })</span>
+<span id="cb1-156"><a href=""></a>  input<span class="op">.</span><span class="fu">addEventListener</span>(<span class="st">"input"</span><span class="op">,</span> ra_blur)</span>
+<span id="cb1-157"><a href=""></a>  <span class="cf">return</span> input</span>
+<span id="cb1-158"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-1-1" data-nodetype="declaration">
@@ -408,31 +411,31 @@
 <!-- buttons in one row (styles in style_9.css) -->
 <div class="ra-buttons">
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="165" data-source-offset="-133"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 164;"><span id="cb2-165"><a href=""></a>ra_resample <span class="op">=</span> n <span class="kw">=&gt;</span> d3<span class="op">.</span><span class="fu">range</span>(n)<span class="op">.</span><span class="fu">map</span>(i <span class="kw">=&gt;</span> {</span>
-<span id="cb2-166"><a href=""></a>  <span class="kw">const</span> draw <span class="op">=</span> (mean<span class="op">,</span> sd) <span class="kw">=&gt;</span> d3<span class="op">.</span><span class="fu">randomNormal</span>(mean<span class="op">,</span> sd)()</span>
-<span id="cb2-167"><a href=""></a>  <span class="kw">const</span> participate <span class="op">=</span> i <span class="op">&lt;</span> n <span class="op">/</span> <span class="dv">2</span> <span class="op">?</span> <span class="dv">1</span> <span class="op">:</span> <span class="dv">0</span></span>
-<span id="cb2-168"><a href=""></a>  <span class="kw">const</span> test_score <span class="op">=</span> <span class="fu">draw</span>(<span class="dv">100</span><span class="op">,</span> <span class="dv">25</span>)</span>
-<span id="cb2-169"><a href=""></a>  <span class="kw">const</span> income <span class="op">=</span> <span class="fu">draw</span>(<span class="dv">75</span><span class="op">,</span> <span class="dv">25</span>)</span>
-<span id="cb2-170"><a href=""></a>  <span class="kw">const</span> age <span class="op">=</span> <span class="fu">draw</span>(<span class="dv">12</span><span class="op">,</span> <span class="dv">2</span>)</span>
-<span id="cb2-171"><a href=""></a>  <span class="kw">const</span> prek <span class="op">=</span> d3<span class="op">.</span><span class="fu">randomBernoulli</span>(<span class="op">.</span><span class="dv">45</span>)()</span>
-<span id="cb2-172"><a href=""></a>  <span class="kw">const</span> y0 <span class="op">=</span> test_score <span class="op">+</span> income <span class="op">*</span> <span class="op">.</span><span class="dv">1</span> <span class="op">+</span> age <span class="op">*</span> <span class="dv">2</span> <span class="op">+</span> prek <span class="op">*</span> <span class="dv">5</span></span>
-<span id="cb2-173"><a href=""></a>  <span class="cf">return</span> {participate<span class="op">,</span> <span class="dt">group</span><span class="op">:</span> participate <span class="op">===</span> <span class="dv">1</span> <span class="op">?</span> <span class="st">"participant"</span> <span class="op">:</span> <span class="st">"comparison"</span><span class="op">,</span></span>
-<span id="cb2-174"><a href=""></a>    test_score<span class="op">,</span> income<span class="op">,</span> age<span class="op">,</span> prek<span class="op">,</span> y0}</span>
-<span id="cb2-175"><a href=""></a>})</span>
-<span id="cb2-176"><a href=""></a></span>
-<span id="cb2-177"><a href=""></a><span class="co">// R's sample at its own size, and a new draw at the others</span></span>
-<span id="cb2-178"><a href=""></a>ra_start <span class="op">=</span> ra_n <span class="op">===</span> ra_data<span class="op">.</span><span class="at">participate</span><span class="op">.</span><span class="at">length</span> <span class="op">?</span> <span class="fu">transpose</span>(ra_data) <span class="op">:</span> <span class="fu">ra_resample</span>(ra_n)</span>
-<span id="cb2-179"><a href=""></a></span>
-<span id="cb2-180"><a href=""></a><span class="co">// Re-randomize shuffles who participates (still half per group);</span></span>
-<span id="cb2-181"><a href=""></a><span class="co">// Re-sample redraws the data and keeps the current assignment. both start</span></span>
-<span id="cb2-182"><a href=""></a><span class="co">// over when the sample size changes</span></span>
-<span id="cb2-183"><a href=""></a>viewof ra_state <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">button</span>([</span>
-<span id="cb2-184"><a href=""></a>  [<span class="st">"re-randomize"</span><span class="op">,</span> s <span class="kw">=&gt;</span> { <span class="fu">ra_blur</span>()<span class="op">;</span> <span class="cf">return</span> {<span class="op">...</span>s<span class="op">,</span> <span class="dt">assign</span><span class="op">:</span> d3<span class="op">.</span><span class="fu">shuffle</span>(s<span class="op">.</span><span class="at">assign</span><span class="op">.</span><span class="fu">slice</span>())} }]<span class="op">,</span></span>
-<span id="cb2-185"><a href=""></a>  [<span class="st">"re-sample"</span><span class="op">,</span> s <span class="kw">=&gt;</span> { <span class="fu">ra_blur</span>()<span class="op">;</span> <span class="cf">return</span> {<span class="op">...</span>s<span class="op">,</span> <span class="dt">rows</span><span class="op">:</span> <span class="fu">ra_resample</span>(ra_n)} }]</span>
-<span id="cb2-186"><a href=""></a>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> {<span class="dt">assign</span><span class="op">:</span> ra_start<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">participate</span>)<span class="op">,</span> <span class="dt">rows</span><span class="op">:</span> ra_start}})</span>
-<span id="cb2-187"><a href=""></a></span>
-<span id="cb2-188"><a href=""></a>ra_assign <span class="op">=</span> ra_state<span class="op">.</span><span class="at">assign</span></span>
-<span id="cb2-189"><a href=""></a>ra_rows <span class="op">=</span> ra_state<span class="op">.</span><span class="at">rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="166" data-source-offset="-133"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 165;"><span id="cb2-166"><a href=""></a>ra_resample <span class="op">=</span> n <span class="kw">=&gt;</span> d3<span class="op">.</span><span class="fu">range</span>(n)<span class="op">.</span><span class="fu">map</span>(i <span class="kw">=&gt;</span> {</span>
+<span id="cb2-167"><a href=""></a>  <span class="kw">const</span> draw <span class="op">=</span> (mean<span class="op">,</span> sd) <span class="kw">=&gt;</span> d3<span class="op">.</span><span class="fu">randomNormal</span>(mean<span class="op">,</span> sd)()</span>
+<span id="cb2-168"><a href=""></a>  <span class="kw">const</span> participate <span class="op">=</span> i <span class="op">&lt;</span> n <span class="op">/</span> <span class="dv">2</span> <span class="op">?</span> <span class="dv">1</span> <span class="op">:</span> <span class="dv">0</span></span>
+<span id="cb2-169"><a href=""></a>  <span class="kw">const</span> test_score <span class="op">=</span> <span class="fu">draw</span>(<span class="dv">100</span><span class="op">,</span> <span class="dv">25</span>)</span>
+<span id="cb2-170"><a href=""></a>  <span class="kw">const</span> income <span class="op">=</span> <span class="fu">draw</span>(<span class="dv">75</span><span class="op">,</span> <span class="dv">25</span>)</span>
+<span id="cb2-171"><a href=""></a>  <span class="kw">const</span> age <span class="op">=</span> <span class="fu">draw</span>(<span class="dv">12</span><span class="op">,</span> <span class="dv">2</span>)</span>
+<span id="cb2-172"><a href=""></a>  <span class="kw">const</span> prek <span class="op">=</span> d3<span class="op">.</span><span class="fu">randomBernoulli</span>(<span class="op">.</span><span class="dv">45</span>)()</span>
+<span id="cb2-173"><a href=""></a>  <span class="kw">const</span> y0 <span class="op">=</span> test_score <span class="op">+</span> income <span class="op">*</span> <span class="op">.</span><span class="dv">1</span> <span class="op">+</span> age <span class="op">*</span> <span class="dv">2</span> <span class="op">+</span> prek <span class="op">*</span> <span class="dv">5</span></span>
+<span id="cb2-174"><a href=""></a>  <span class="cf">return</span> {participate<span class="op">,</span> <span class="dt">group</span><span class="op">:</span> participate <span class="op">===</span> <span class="dv">1</span> <span class="op">?</span> <span class="st">"participant"</span> <span class="op">:</span> <span class="st">"comparison"</span><span class="op">,</span></span>
+<span id="cb2-175"><a href=""></a>    test_score<span class="op">,</span> income<span class="op">,</span> age<span class="op">,</span> prek<span class="op">,</span> y0}</span>
+<span id="cb2-176"><a href=""></a>})</span>
+<span id="cb2-177"><a href=""></a></span>
+<span id="cb2-178"><a href=""></a><span class="co">// R's sample at its own size, and a new draw at the others</span></span>
+<span id="cb2-179"><a href=""></a>ra_start <span class="op">=</span> ra_n <span class="op">===</span> ra_data<span class="op">.</span><span class="at">participate</span><span class="op">.</span><span class="at">length</span> <span class="op">?</span> <span class="fu">transpose</span>(ra_data) <span class="op">:</span> <span class="fu">ra_resample</span>(ra_n)</span>
+<span id="cb2-180"><a href=""></a></span>
+<span id="cb2-181"><a href=""></a><span class="co">// Re-randomize shuffles who participates (still half per group);</span></span>
+<span id="cb2-182"><a href=""></a><span class="co">// Re-sample redraws the data and keeps the current assignment. both start</span></span>
+<span id="cb2-183"><a href=""></a><span class="co">// over when the sample size changes</span></span>
+<span id="cb2-184"><a href=""></a>viewof ra_state <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">button</span>([</span>
+<span id="cb2-185"><a href=""></a>  [<span class="st">"re-randomize"</span><span class="op">,</span> s <span class="kw">=&gt;</span> { <span class="fu">ra_blur</span>()<span class="op">;</span> <span class="cf">return</span> {<span class="op">...</span>s<span class="op">,</span> <span class="dt">assign</span><span class="op">:</span> d3<span class="op">.</span><span class="fu">shuffle</span>(s<span class="op">.</span><span class="at">assign</span><span class="op">.</span><span class="fu">slice</span>())} }]<span class="op">,</span></span>
+<span id="cb2-186"><a href=""></a>  [<span class="st">"re-sample"</span><span class="op">,</span> s <span class="kw">=&gt;</span> { <span class="fu">ra_blur</span>()<span class="op">;</span> <span class="cf">return</span> {<span class="op">...</span>s<span class="op">,</span> <span class="dt">rows</span><span class="op">:</span> <span class="fu">ra_resample</span>(ra_n)} }]</span>
+<span id="cb2-187"><a href=""></a>]<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> {<span class="dt">assign</span><span class="op">:</span> ra_start<span class="op">.</span><span class="fu">map</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">participate</span>)<span class="op">,</span> <span class="dt">rows</span><span class="op">:</span> ra_start}})</span>
+<span id="cb2-188"><a href=""></a></span>
+<span id="cb2-189"><a href=""></a>ra_assign <span class="op">=</span> ra_state<span class="op">.</span><span class="at">assign</span></span>
+<span id="cb2-190"><a href=""></a>ra_rows <span class="op">=</span> ra_state<span class="op">.</span><span class="at">rows</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-2-1" data-nodetype="declaration">
@@ -470,7 +473,7 @@
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb3" data-startfrom="192" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 191;"><span id="cb3-192"><a href=""></a>viewof ra_show_full <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">button</span>(<span class="st">"full data"</span><span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span> <span class="dt">reduce</span><span class="op">:</span> v <span class="kw">=&gt;</span> { <span class="fu">ra_blur</span>()<span class="op">;</span> <span class="cf">return</span> <span class="op">!</span>v }})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb3" data-startfrom="193" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 192;"><span id="cb3-193"><a href=""></a>viewof ra_show_full <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">button</span>(<span class="st">"full data"</span><span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span> <span class="dt">reduce</span><span class="op">:</span> v <span class="kw">=&gt;</span> { <span class="fu">ra_blur</span>()<span class="op">;</span> <span class="cf">return</span> <span class="op">!</span>v }})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-3" data-nodetype="declaration">
 
@@ -479,13 +482,13 @@
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb4" data-startfrom="200" data-source-offset="-111"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 199;"><span id="cb4-200"><a href=""></a>ra_current <span class="op">=</span> ra_rows<span class="op">.</span><span class="fu">map</span>((d<span class="op">,</span> i) <span class="kw">=&gt;</span> ({</span>
-<span id="cb4-201"><a href=""></a>  <span class="op">...</span>d<span class="op">,</span></span>
-<span id="cb4-202"><a href=""></a>  <span class="dt">participate</span><span class="op">:</span> ra_assign[i]<span class="op">,</span></span>
-<span id="cb4-203"><a href=""></a>  <span class="dt">group</span><span class="op">:</span> ra_assign[i] <span class="op">===</span> <span class="dv">1</span> <span class="op">?</span> <span class="st">"participant"</span> <span class="op">:</span> <span class="st">"comparison"</span></span>
-<span id="cb4-204"><a href=""></a>}))</span>
-<span id="cb4-205"><a href=""></a></span>
-<span id="cb4-206"><a href=""></a>ra_vars <span class="op">=</span> <span class="bu">Object</span><span class="op">.</span><span class="fu">keys</span>(ra_data)<span class="op">.</span><span class="fu">filter</span>(v <span class="kw">=&gt;</span> <span class="op">!</span>[<span class="st">"participate"</span><span class="op">,</span> <span class="st">"group"</span>]<span class="op">.</span><span class="fu">includes</span>(v))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb4" data-startfrom="201" data-source-offset="-111"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 200;"><span id="cb4-201"><a href=""></a>ra_current <span class="op">=</span> ra_rows<span class="op">.</span><span class="fu">map</span>((d<span class="op">,</span> i) <span class="kw">=&gt;</span> ({</span>
+<span id="cb4-202"><a href=""></a>  <span class="op">...</span>d<span class="op">,</span></span>
+<span id="cb4-203"><a href=""></a>  <span class="dt">participate</span><span class="op">:</span> ra_assign[i]<span class="op">,</span></span>
+<span id="cb4-204"><a href=""></a>  <span class="dt">group</span><span class="op">:</span> ra_assign[i] <span class="op">===</span> <span class="dv">1</span> <span class="op">?</span> <span class="st">"participant"</span> <span class="op">:</span> <span class="st">"comparison"</span></span>
+<span id="cb4-205"><a href=""></a>}))</span>
+<span id="cb4-206"><a href=""></a></span>
+<span id="cb4-207"><a href=""></a>ra_vars <span class="op">=</span> <span class="bu">Object</span><span class="op">.</span><span class="fu">keys</span>(ra_data)<span class="op">.</span><span class="fu">filter</span>(v <span class="kw">=&gt;</span> <span class="op">!</span>[<span class="st">"participate"</span><span class="op">,</span> <span class="st">"group"</span>]<span class="op">.</span><span class="fu">includes</span>(v))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-4-1" data-nodetype="declaration">
@@ -504,36 +507,36 @@
 <!-- means table, with the full data beside it (styles in style_9.css) -->
 <div class="ra-tables">
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb5" data-startfrom="213" data-source-offset="-35"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 212;"><span id="cb5-213"><a href=""></a>ra_mean <span class="op">=</span> (v<span class="op">,</span> p) <span class="kw">=&gt;</span> d3<span class="op">.</span><span class="fu">mean</span>(ra_current<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">participate</span> <span class="op">===</span> p)<span class="op">,</span> d <span class="kw">=&gt;</span> d[v])</span>
-<span id="cb5-214"><a href=""></a></span>
-<span id="cb5-215"><a href=""></a><span class="co">// how each variable's mean is shown (the 0/1 variables as percentages)</span></span>
-<span id="cb5-216"><a href=""></a>ra_fmt <span class="op">=</span> {</span>
-<span id="cb5-217"><a href=""></a>  <span class="kw">const</span> pct <span class="op">=</span> v <span class="kw">=&gt;</span> <span class="vs">`</span><span class="sc">${</span><span class="bu">Math</span><span class="op">.</span><span class="fu">round</span>(v <span class="op">*</span> <span class="dv">100</span>)<span class="sc">}</span><span class="vs">%`</span></span>
-<span id="cb5-218"><a href=""></a>  <span class="cf">return</span> {</span>
-<span id="cb5-219"><a href=""></a>    <span class="dt">test_score</span><span class="op">:</span> v <span class="kw">=&gt;</span> v<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">0</span>)<span class="op">,</span></span>
-<span id="cb5-220"><a href=""></a>    <span class="dt">income</span><span class="op">:</span> v <span class="kw">=&gt;</span> <span class="vs">`$</span><span class="sc">${</span>v<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">0</span>)<span class="sc">}</span><span class="vs">k`</span><span class="op">,</span></span>
-<span id="cb5-221"><a href=""></a>    <span class="dt">age</span><span class="op">:</span> v <span class="kw">=&gt;</span> v<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="op">,</span></span>
-<span id="cb5-222"><a href=""></a>    <span class="dt">prek</span><span class="op">:</span> pct<span class="op">,</span></span>
-<span id="cb5-223"><a href=""></a>    <span class="dt">y0</span><span class="op">:</span> v <span class="kw">=&gt;</span> v<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">0</span>)</span>
-<span id="cb5-224"><a href=""></a>  }</span>
-<span id="cb5-225"><a href=""></a>}</span>
-<span id="cb5-226"><a href=""></a></span>
-<span id="cb5-227"><a href=""></a><span class="co">// name shown for each variable</span></span>
-<span id="cb5-228"><a href=""></a>ra_labels <span class="op">=</span> ({</span>
-<span id="cb5-229"><a href=""></a>  <span class="dt">test_score</span><span class="op">:</span> <span class="st">"Base Test Score"</span><span class="op">,</span></span>
-<span id="cb5-230"><a href=""></a>  <span class="dt">income</span><span class="op">:</span> <span class="st">"Fam Income"</span><span class="op">,</span></span>
-<span id="cb5-231"><a href=""></a>  <span class="dt">age</span><span class="op">:</span> <span class="st">"Age"</span><span class="op">,</span></span>
-<span id="cb5-232"><a href=""></a>  <span class="dt">prek</span><span class="op">:</span> <span class="st">"Did Pre-K"</span><span class="op">,</span></span>
-<span id="cb5-233"><a href=""></a>  <span class="dt">y0</span><span class="op">:</span> <span class="st">"Y(0)"</span></span>
-<span id="cb5-234"><a href=""></a>})</span>
-<span id="cb5-235"><a href=""></a></span>
-<span id="cb5-236"><a href=""></a><span class="co">// the y0 row is bold italic (styles in style_9.css)</span></span>
-<span id="cb5-237"><a href=""></a><span class="fu">html</span><span class="vs">`&lt;div class="ra-means"&gt;&lt;table&gt;</span></span>
-<span id="cb5-238"><a href=""></a><span class="vs">  &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Variable&lt;/th&gt;&lt;th&gt;Participant&lt;/th&gt;&lt;th&gt;Comparison&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;</span></span>
-<span id="cb5-239"><a href=""></a><span class="vs">  &lt;tbody&gt;</span><span class="sc">${</span>ra_vars<span class="op">.</span><span class="fu">map</span>(v <span class="kw">=&gt;</span> <span class="fu">html</span><span class="vs">`&lt;tr class=</span><span class="sc">${</span>v <span class="op">===</span> <span class="st">"y0"</span> <span class="op">?</span> <span class="st">"ra-y0"</span> <span class="op">:</span> <span class="kw">null</span><span class="sc">}</span><span class="vs">&gt;</span></span>
-<span id="cb5-240"><a href=""></a><span class="vs">    &lt;td&gt;</span><span class="sc">${</span>ra_labels[v]<span class="sc">}</span><span class="vs">&lt;/td&gt;&lt;td&gt;</span><span class="sc">${</span>ra_fmt[v](<span class="fu">ra_mean</span>(v<span class="op">,</span> <span class="dv">1</span>))<span class="sc">}</span><span class="vs">&lt;/td&gt;&lt;td&gt;</span><span class="sc">${</span>ra_fmt[v](<span class="fu">ra_mean</span>(v<span class="op">,</span> <span class="dv">0</span>))<span class="sc">}</span><span class="vs">&lt;/td&gt;</span></span>
-<span id="cb5-241"><a href=""></a><span class="vs">  &lt;/tr&gt;`</span>)<span class="sc">}</span><span class="vs">&lt;/tbody&gt;</span></span>
-<span id="cb5-242"><a href=""></a><span class="vs">&lt;/table&gt;&lt;/div&gt;`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb5" data-startfrom="214" data-source-offset="-35"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 213;"><span id="cb5-214"><a href=""></a>ra_mean <span class="op">=</span> (v<span class="op">,</span> p) <span class="kw">=&gt;</span> d3<span class="op">.</span><span class="fu">mean</span>(ra_current<span class="op">.</span><span class="fu">filter</span>(d <span class="kw">=&gt;</span> d<span class="op">.</span><span class="at">participate</span> <span class="op">===</span> p)<span class="op">,</span> d <span class="kw">=&gt;</span> d[v])</span>
+<span id="cb5-215"><a href=""></a></span>
+<span id="cb5-216"><a href=""></a><span class="co">// how each variable's mean is shown (the 0/1 variables as percentages)</span></span>
+<span id="cb5-217"><a href=""></a>ra_fmt <span class="op">=</span> {</span>
+<span id="cb5-218"><a href=""></a>  <span class="kw">const</span> pct <span class="op">=</span> v <span class="kw">=&gt;</span> <span class="vs">`</span><span class="sc">${</span><span class="bu">Math</span><span class="op">.</span><span class="fu">round</span>(v <span class="op">*</span> <span class="dv">100</span>)<span class="sc">}</span><span class="vs">%`</span></span>
+<span id="cb5-219"><a href=""></a>  <span class="cf">return</span> {</span>
+<span id="cb5-220"><a href=""></a>    <span class="dt">test_score</span><span class="op">:</span> v <span class="kw">=&gt;</span> v<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">0</span>)<span class="op">,</span></span>
+<span id="cb5-221"><a href=""></a>    <span class="dt">income</span><span class="op">:</span> v <span class="kw">=&gt;</span> <span class="vs">`$</span><span class="sc">${</span>v<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">0</span>)<span class="sc">}</span><span class="vs">k`</span><span class="op">,</span></span>
+<span id="cb5-222"><a href=""></a>    <span class="dt">age</span><span class="op">:</span> v <span class="kw">=&gt;</span> v<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>)<span class="op">,</span></span>
+<span id="cb5-223"><a href=""></a>    <span class="dt">prek</span><span class="op">:</span> pct<span class="op">,</span></span>
+<span id="cb5-224"><a href=""></a>    <span class="dt">y0</span><span class="op">:</span> v <span class="kw">=&gt;</span> v<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">0</span>)</span>
+<span id="cb5-225"><a href=""></a>  }</span>
+<span id="cb5-226"><a href=""></a>}</span>
+<span id="cb5-227"><a href=""></a></span>
+<span id="cb5-228"><a href=""></a><span class="co">// name shown for each variable</span></span>
+<span id="cb5-229"><a href=""></a>ra_labels <span class="op">=</span> ({</span>
+<span id="cb5-230"><a href=""></a>  <span class="dt">test_score</span><span class="op">:</span> <span class="st">"Base Test Score"</span><span class="op">,</span></span>
+<span id="cb5-231"><a href=""></a>  <span class="dt">income</span><span class="op">:</span> <span class="st">"Fam Income"</span><span class="op">,</span></span>
+<span id="cb5-232"><a href=""></a>  <span class="dt">age</span><span class="op">:</span> <span class="st">"Age"</span><span class="op">,</span></span>
+<span id="cb5-233"><a href=""></a>  <span class="dt">prek</span><span class="op">:</span> <span class="st">"Did Pre-K"</span><span class="op">,</span></span>
+<span id="cb5-234"><a href=""></a>  <span class="dt">y0</span><span class="op">:</span> <span class="st">"Y(0)"</span></span>
+<span id="cb5-235"><a href=""></a>})</span>
+<span id="cb5-236"><a href=""></a></span>
+<span id="cb5-237"><a href=""></a><span class="co">// the y0 row is bold italic (styles in style_9.css)</span></span>
+<span id="cb5-238"><a href=""></a><span class="fu">html</span><span class="vs">`&lt;div class="ra-means"&gt;&lt;table&gt;</span></span>
+<span id="cb5-239"><a href=""></a><span class="vs">  &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Variable&lt;/th&gt;&lt;th&gt;Participant&lt;/th&gt;&lt;th&gt;Comparison&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;</span></span>
+<span id="cb5-240"><a href=""></a><span class="vs">  &lt;tbody&gt;</span><span class="sc">${</span>ra_vars<span class="op">.</span><span class="fu">map</span>(v <span class="kw">=&gt;</span> <span class="fu">html</span><span class="vs">`&lt;tr class=</span><span class="sc">${</span>v <span class="op">===</span> <span class="st">"y0"</span> <span class="op">?</span> <span class="st">"ra-y0"</span> <span class="op">:</span> <span class="kw">null</span><span class="sc">}</span><span class="vs">&gt;</span></span>
+<span id="cb5-241"><a href=""></a><span class="vs">    &lt;td&gt;</span><span class="sc">${</span>ra_labels[v]<span class="sc">}</span><span class="vs">&lt;/td&gt;&lt;td&gt;</span><span class="sc">${</span>ra_fmt[v](<span class="fu">ra_mean</span>(v<span class="op">,</span> <span class="dv">1</span>))<span class="sc">}</span><span class="vs">&lt;/td&gt;&lt;td&gt;</span><span class="sc">${</span>ra_fmt[v](<span class="fu">ra_mean</span>(v<span class="op">,</span> <span class="dv">0</span>))<span class="sc">}</span><span class="vs">&lt;/td&gt;</span></span>
+<span id="cb5-242"><a href=""></a><span class="vs">  &lt;/tr&gt;`</span>)<span class="sc">}</span><span class="vs">&lt;/tbody&gt;</span></span>
+<span id="cb5-243"><a href=""></a><span class="vs">&lt;/table&gt;&lt;/div&gt;`</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-5-1" data-nodetype="declaration">
@@ -565,24 +568,24 @@
 </div>
 <div class="ra-full-wrap">
 <div class="cell">
-<div class="sourceCode cell-code hidden" id="cb6" data-startfrom="249" data-source-offset="-139"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 248;"><span id="cb6-249"><a href=""></a>ra_full_cols <span class="op">=</span> <span class="bu">Object</span><span class="op">.</span><span class="fu">keys</span>(ra_data)<span class="op">.</span><span class="fu">filter</span>(v <span class="kw">=&gt;</span> v <span class="op">!==</span> <span class="st">"participate"</span>)</span>
-<span id="cb6-250"><a href=""></a></span>
-<span id="cb6-251"><a href=""></a><span class="co">// built once each time it's opened; ra_full.update() then rewrites the</span></span>
-<span id="cb6-252"><a href=""></a><span class="co">// cells in place when the data changes, rather than redrawing the table</span></span>
-<span id="cb6-253"><a href=""></a><span class="co">// (which flickers and loses the scroll position)</span></span>
-<span id="cb6-254"><a href=""></a>ra_full <span class="op">=</span> {</span>
-<span id="cb6-255"><a href=""></a>  <span class="cf">if</span> (<span class="op">!</span>ra_show_full) <span class="cf">return</span> <span class="fu">html</span><span class="vs">``</span></span>
-<span id="cb6-256"><a href=""></a>  <span class="kw">const</span> fmt <span class="op">=</span> x <span class="kw">=&gt;</span> <span class="kw">typeof</span> x <span class="op">===</span> <span class="st">"number"</span> <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="bu">Number</span><span class="op">.</span><span class="fu">isInteger</span>(x) <span class="op">?</span> x<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>) <span class="op">:</span> x</span>
-<span id="cb6-257"><a href=""></a>  <span class="kw">const</span> rows <span class="op">=</span> d3<span class="op">.</span><span class="fu">range</span>(ra_n)<span class="op">.</span><span class="fu">map</span>(() <span class="kw">=&gt;</span> ra_full_cols<span class="op">.</span><span class="fu">map</span>(() <span class="kw">=&gt;</span> <span class="fu">html</span><span class="vs">`&lt;td&gt;&lt;/td&gt;`</span>))</span>
-<span id="cb6-258"><a href=""></a>  <span class="kw">const</span> el <span class="op">=</span> <span class="fu">html</span><span class="vs">`&lt;div class="ra-full"&gt;&lt;table&gt;</span></span>
-<span id="cb6-259"><a href=""></a><span class="vs">    &lt;thead&gt;&lt;tr&gt;</span><span class="sc">${</span>ra_full_cols<span class="op">.</span><span class="fu">map</span>(v <span class="kw">=&gt;</span> <span class="fu">html</span><span class="vs">`&lt;th&gt;</span><span class="sc">${</span>v<span class="sc">}</span><span class="vs">&lt;/th&gt;`</span>)<span class="sc">}</span><span class="vs">&lt;/tr&gt;&lt;/thead&gt;</span></span>
-<span id="cb6-260"><a href=""></a><span class="vs">    &lt;tbody&gt;</span><span class="sc">${</span>rows<span class="op">.</span><span class="fu">map</span>(cells <span class="kw">=&gt;</span> <span class="fu">html</span><span class="vs">`&lt;tr&gt;</span><span class="sc">${</span>cells<span class="sc">}</span><span class="vs">&lt;/tr&gt;`</span>)<span class="sc">}</span><span class="vs">&lt;/tbody&gt;</span></span>
-<span id="cb6-261"><a href=""></a><span class="vs">  &lt;/table&gt;&lt;/div&gt;`</span></span>
-<span id="cb6-262"><a href=""></a>  el<span class="op">.</span><span class="at">update</span> <span class="op">=</span> data <span class="kw">=&gt;</span> data<span class="op">.</span><span class="fu">forEach</span>((d<span class="op">,</span> i) <span class="kw">=&gt;</span> ra_full_cols<span class="op">.</span><span class="fu">forEach</span>((v<span class="op">,</span> j) <span class="kw">=&gt;</span> {</span>
-<span id="cb6-263"><a href=""></a>    rows[i][j]<span class="op">.</span><span class="at">textContent</span> <span class="op">=</span> <span class="fu">fmt</span>(d[v])</span>
-<span id="cb6-264"><a href=""></a>  }))</span>
-<span id="cb6-265"><a href=""></a>  <span class="cf">return</span> el</span>
-<span id="cb6-266"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb6" data-startfrom="250" data-source-offset="-139"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 249;"><span id="cb6-250"><a href=""></a>ra_full_cols <span class="op">=</span> <span class="bu">Object</span><span class="op">.</span><span class="fu">keys</span>(ra_data)<span class="op">.</span><span class="fu">filter</span>(v <span class="kw">=&gt;</span> v <span class="op">!==</span> <span class="st">"participate"</span>)</span>
+<span id="cb6-251"><a href=""></a></span>
+<span id="cb6-252"><a href=""></a><span class="co">// built once each time it's opened; ra_full.update() then rewrites the</span></span>
+<span id="cb6-253"><a href=""></a><span class="co">// cells in place when the data changes, rather than redrawing the table</span></span>
+<span id="cb6-254"><a href=""></a><span class="co">// (which flickers and loses the scroll position)</span></span>
+<span id="cb6-255"><a href=""></a>ra_full <span class="op">=</span> {</span>
+<span id="cb6-256"><a href=""></a>  <span class="cf">if</span> (<span class="op">!</span>ra_show_full) <span class="cf">return</span> <span class="fu">html</span><span class="vs">``</span></span>
+<span id="cb6-257"><a href=""></a>  <span class="kw">const</span> fmt <span class="op">=</span> x <span class="kw">=&gt;</span> <span class="kw">typeof</span> x <span class="op">===</span> <span class="st">"number"</span> <span class="op">&amp;&amp;</span> <span class="op">!</span><span class="bu">Number</span><span class="op">.</span><span class="fu">isInteger</span>(x) <span class="op">?</span> x<span class="op">.</span><span class="fu">toFixed</span>(<span class="dv">1</span>) <span class="op">:</span> x</span>
+<span id="cb6-258"><a href=""></a>  <span class="kw">const</span> rows <span class="op">=</span> d3<span class="op">.</span><span class="fu">range</span>(ra_n)<span class="op">.</span><span class="fu">map</span>(() <span class="kw">=&gt;</span> ra_full_cols<span class="op">.</span><span class="fu">map</span>(() <span class="kw">=&gt;</span> <span class="fu">html</span><span class="vs">`&lt;td&gt;&lt;/td&gt;`</span>))</span>
+<span id="cb6-259"><a href=""></a>  <span class="kw">const</span> el <span class="op">=</span> <span class="fu">html</span><span class="vs">`&lt;div class="ra-full"&gt;&lt;table&gt;</span></span>
+<span id="cb6-260"><a href=""></a><span class="vs">    &lt;thead&gt;&lt;tr&gt;</span><span class="sc">${</span>ra_full_cols<span class="op">.</span><span class="fu">map</span>(v <span class="kw">=&gt;</span> <span class="fu">html</span><span class="vs">`&lt;th&gt;</span><span class="sc">${</span>v<span class="sc">}</span><span class="vs">&lt;/th&gt;`</span>)<span class="sc">}</span><span class="vs">&lt;/tr&gt;&lt;/thead&gt;</span></span>
+<span id="cb6-261"><a href=""></a><span class="vs">    &lt;tbody&gt;</span><span class="sc">${</span>rows<span class="op">.</span><span class="fu">map</span>(cells <span class="kw">=&gt;</span> <span class="fu">html</span><span class="vs">`&lt;tr&gt;</span><span class="sc">${</span>cells<span class="sc">}</span><span class="vs">&lt;/tr&gt;`</span>)<span class="sc">}</span><span class="vs">&lt;/tbody&gt;</span></span>
+<span id="cb6-262"><a href=""></a><span class="vs">  &lt;/table&gt;&lt;/div&gt;`</span></span>
+<span id="cb6-263"><a href=""></a>  el<span class="op">.</span><span class="at">update</span> <span class="op">=</span> data <span class="kw">=&gt;</span> data<span class="op">.</span><span class="fu">forEach</span>((d<span class="op">,</span> i) <span class="kw">=&gt;</span> ra_full_cols<span class="op">.</span><span class="fu">forEach</span>((v<span class="op">,</span> j) <span class="kw">=&gt;</span> {</span>
+<span id="cb6-264"><a href=""></a>    rows[i][j]<span class="op">.</span><span class="at">textContent</span> <span class="op">=</span> <span class="fu">fmt</span>(d[v])</span>
+<span id="cb6-265"><a href=""></a>  }))</span>
+<span id="cb6-266"><a href=""></a>  <span class="cf">return</span> el</span>
+<span id="cb6-267"><a href=""></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <div id="ojs-cell-6-1" data-nodetype="declaration">
@@ -599,7 +602,7 @@
 </div>
 </div>
 <div class="cell hidden">
-<div class="sourceCode cell-code hidden" id="cb7" data-startfrom="270" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 269;"><span id="cb7-270"><a href=""></a>ra_full<span class="op">.</span><span class="at">update</span><span class="op">?.</span>(ra_current)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code hidden" id="cb7" data-startfrom="271" data-source-offset="0"><pre class="sourceCode numberSource js number-lines code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 270;"><span id="cb7-271"><a href=""></a>ra_full<span class="op">.</span><span class="at">update</span><span class="op">?.</span>(ra_current)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display hidden">
 <div id="ojs-cell-7" data-nodetype="expression">
 

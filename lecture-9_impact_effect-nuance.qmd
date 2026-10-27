@@ -32,8 +32,8 @@ language:
 - **Magnitude**: how large an effect is
 - **Effect size**: a ***standardized*** measure of effect magnitude
   - Can be compared across outcomes in different units / scales
-- **Standardized mean difference**: most common effect size measure
-  - Difference between participant & comparison group averages, in ***standard deviation units***
+- **Standardized mean difference**: program effect in ***standard deviation units***
+  - Most common type of effect size measure
   - ***Cohen's D*** & ***Hedges' G*** are most common standardized mean diff statistics
 - Rules of thumb for education field research[^fn-kraft]:
   - \> .20 = large
@@ -50,22 +50,23 @@ language:
 - Is our effect estimate real, or is it just noise?
   - We need a ***large enough effect estimate*** that we can be ***confident it's coming from a real effect*** and not just noise
   - "signal-to-noise ratio"
-- **Precision**: how much our estimates limit noise
-- We can increase precision by:
-  - Increasing sample size
-  - Adjusting for baseline covariates
 
-## Statistical Significance & Power
+## Statistical Significance & Power {.smaller}
 
 - **Statistical significance**: formalized procedure for ***evaluating likelihood that effect estimates are "real"*** and not just noise
-- **Statistical power**: how ***likely we are to detect an effect***, i.e., decide it's statistically significant, given a set of factors including:
-  - Sample size
+  - If this procedure determines that the effect is "statistically significant," we feel confident that it's real
+- **Statistical power**: how ***likely we are*** to find statistical significance, aka ***detect the effect***
+- Power is based on factors including:
   - Effect size
-  - Variation in outcomes (after adjusting for baseline covariates)
+  - Sample size
+  - Variation in outcome
+- We can ***increase power by reducing noise*** (aka increasing **precision**)
+  - Increase sample size
+  - Adjust for baseline covariates (to reduce outcome variation)
 
 ## Minimum Detectable Effect Size
 
-- **Minimum detectable effect size (MDES)**: re-arrange the power equation to find the ***smallest effect you are likely to detect*** given the same set of factors
+- **Minimum detectable effect size (MDES)**: the ***smallest effect you are likely to detect*** given your power & precision
 - The ***larger the sample***, the ***smaller your MDES*** will be
   - But, the ***more costly*** your study will be (if collecting data)
 - **Practical significance**: an effect size that would represent a ***meaningful change*** in outcomes
