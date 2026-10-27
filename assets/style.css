@@ -1,0 +1,297 @@
+/* === Title === */
+
+.title {
+  font-size: 80px !important;
+}
+
+.subtitle {
+  font-size: 50px;
+}
+
+/* === Headers === */
+
+/* center align H1 header when used as section break, so
+when it's also horizontally aligned */
+.center h1 {
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
+}
+
+/* === Tabsets === */
+
+/* reduce tabset font size */
+.panel-tabset-tabby a {
+  font-size: 25px;
+}
+
+/* === References === */
+
+/* add spacing between each footnote item */
+ol li {
+  margin: 15px !important;
+}
+
+/* put footnotes on same line as number */
+ol li p {
+  display: inline !important;
+}
+
+/* reduce footnote size 
+commented out bc only need if can't scroll on footnote slide
+.footnotes ol {
+  font-size: .8em;
+}
+*/
+
+/* === Fragments === */
+
+.reveal .fragment.highlight-bold.visible {
+  font-weight: bold;
+}
+
+/* === Font size === */
+
+/* Shrinks font size but not as small as .smaller (0.7em); headings 
+are divided back out so slide titles stay at their normal size, 
+matching how .smaller behaves */
+.reveal .slides section.medium {
+  font-size: 0.9em;
+}
+
+.reveal .slides section.medium h1 {
+  font-size: calc(2.5em / 0.9);
+}
+
+.reveal .slides section.medium h2 {
+  font-size: calc(1.6em / 0.9);
+}
+
+.reveal .slides section.medium h3 {
+  font-size: calc(1.3em / 0.9);
+}
+
+/* shrink a long slide title: wrap the heading text in a span,
+e.g. `## [Long title]{.title-sm} {.smaller}`. em is relative to the
+h2, so this works the same whether or not the slide is .smaller */
+.reveal h2 .title-sm {
+  font-size: 0.8em;
+  /* block so the lines are spaced off the span's smaller font
+  instead of the full-size h2 line height */
+  display: block;
+  line-height: 1.1;
+}
+
+/* same as .title-sm, but less shrunk */
+.reveal h2 .title-med {
+  font-size: 0.9em;
+  display: block;
+  line-height: 1.1;
+}
+
+/* === r-stack === */
+
+/* reveal centers every r-stack child via `margin: auto`, which
+pulls a bullet list into the middle of the slide. Reset the
+margins the way a list sits on a normal slide so bullets line up
+across slides; other children (overlays) stay centered. */
+.reveal .r-stack > ul,
+.reveal .r-stack > ol {
+  margin-top: 0;
+  margin-right: 0;
+  margin-left: 1em;
+  align-self: start;
+}
+
+/* left-align a stack's overlays instead of centering them, so
+progressively-revealed versions of the same content sit in exactly the
+same spot. it is reveal's `margin: auto` that has to be undone here --
+justify-self alone cannot win against an auto margin. */
+.reveal .r-stack.stack-left > * {
+  margin-left: 0;
+  margin-right: auto;
+  align-self: start;
+}
+
+/* pin a stack's overlays to the top instead of centering them
+vertically, so versions of different heights all start on the same
+line. reveal's auto top/bottom margins center them otherwise. combine
+with .stack-left to pin to the top-left corner */
+.reveal .r-stack.stack-top > * {
+  margin-top: 0;
+  margin-bottom: auto;
+}
+
+/* === Parenthesized alpha lists === */
+
+/* pandoc turns "(a)" into <ol type="a">, which HTML renders as "a."
+   rebuild the markers with a counter so they show as "(a)" */
+.reveal section.parens ol[type="a"] {
+  list-style: none;
+  counter-reset: parens-alpha;
+}
+
+.reveal section.parens ol[type="a"] > li {
+  counter-increment: parens-alpha;
+  position: relative;
+}
+
+.reveal section.parens ol[type="a"] > li::before {
+  content: "(" counter(parens-alpha, lower-alpha) ")";
+  position: absolute;
+  right: 100%;
+  padding-right: 0.4em;
+}
+
+/* === PDF export: frozen fragments === */
+
+/* assets/pdf-fragments.html removes the `fragment` class from slides that
+should stay one page in the PDF.  reveal's own fragment styles key off
+`.fragment`, so re-apply the ones this deck uses. */
+.reveal .slides section .frozen.strike {
+  text-decoration: line-through;
+}
+
+/* === Reduce default font sizes === */
+
+/* shrink the whole presentation to 0.9x Quarto's default. Headings and
+text are all em-based off this, so they scale together. .smaller still
+divides headings back out by 0.7, so titles stay this same size there */
+.reveal {
+  font-size: calc(var(--r-main-font-size) * 0.9);
+}
+
+/* tighter h2 line spacing (Quarto default is 1.2) */
+.reveal h2 {
+  line-height: 1.1;
+}
+
+/* .smaller would otherwise be 0.7 of the already-shrunk base (0.63x
+Quarto's default). Use 0.7 / 0.9 so text lands at 0.7x Quarto's
+default, and divide headings back out by the same so titles stay put */
+.reveal .slides section.smaller {
+  font-size: calc(0.7em / 0.9);
+}
+
+.reveal .slides section.smaller h1 {
+  font-size: calc(2.5em * 0.9 / 0.7);
+}
+
+.reveal .slides section.smaller h2 {
+  font-size: calc(1.6em * 0.9 / 0.7);
+}
+
+.reveal .slides section.smaller h3 {
+  font-size: calc(1.3em * 0.9 / 0.7);
+}
+
+/* === Random Assignment in Action === */
+
+/* buttons: Observable Inputs come with their own label column and sizing;
+shrink them and line them up from the left */
+.reveal .ra form {
+  width: auto;
+  margin: 0 0 0.4em 0;
+  font-size: 0.5em;
+}
+
+.reveal .ra form button {
+  font-size: 1em;
+  padding: 0.2em 0.7em;
+  margin-right: 0.4em;
+  cursor: pointer;
+}
+
+/* table font sizes are set on wrapper divs: quarto's ojs styles force
+`.observablehq table { font-size: 0.9em !important }`, so the tables
+end up at 0.9 of these */
+
+/* the two tables are centered on the slide, with equal space to the left
+of the means table, between the tables, and to the right of the full
+data. fixed widths so nothing shifts when the full data opens */
+.reveal .ra {
+  --ra-means-w: 378px;
+  --ra-full-w: 370px;
+  --ra-space: calc((100% - var(--ra-means-w) - var(--ra-full-w)) / 3);
+}
+
+/* the buttons row (re-randomize / re-sample, then full data) and the
+tables row (means, then full data) share these columns, so each button
+sits right above its table */
+.reveal .ra .ra-buttons,
+.reveal .ra .ra-tables {
+  display: grid;
+  grid-template-columns: 1fr var(--ra-means-w) 1fr var(--ra-full-w) 1fr;
+  align-items: start;
+}
+
+.reveal .ra .ra-buttons > :first-child,
+.reveal .ra .ra-tables > :first-child {
+  grid-column: 2;
+}
+
+.reveal .ra .ra-buttons > :nth-child(2),
+.reveal .ra .ra-tables > :nth-child(2) {
+  grid-column: 4;
+}
+
+.reveal .ra .ra-tables {
+  margin-top: 25px;
+}
+
+/* sample size radios: lined up with the left edge of the means table */
+.reveal .ra > :first-child {
+  margin-left: var(--ra-space);
+}
+
+/* full data: scrolls inside a fixed height, header stays put */
+.reveal .ra .ra-full {
+  /* runs to just above the bottom of the slide */
+  max-height: 386px;
+  overflow: auto;
+  font-size: 0.5em;
+}
+
+.reveal .ra .ra-full table {
+  width: 100%;
+  margin: 0;
+}
+
+/* tighter cells */
+.reveal .ra .ra-full th,
+.reveal .ra .ra-full td {
+  padding: 0.15em 0.35em;
+}
+
+.reveal .ra .ra-full thead th {
+  position: sticky;
+  top: 0;
+  background: white;
+}
+
+/* means table: fixed column widths so the numbers don't jump around
+as they change */
+.reveal .ra .ra-means {
+  font-size: 0.6em;
+}
+
+.reveal .ra .ra-means table {
+  table-layout: fixed;
+  width: 100%;
+  margin: 0;
+  white-space: nowrap;
+}
+
+/* Y(0), the last row */
+.reveal .ra .ra-means tr.ra-y0 td {
+  font-weight: bold;
+  font-style: italic;
+}
+
+/* center the Participant / Comparison columns (headers and numbers) */
+.reveal .ra .ra-means th:not(:first-child),
+.reveal .ra .ra-means td:not(:first-child) {
+  text-align: center;
+}

@@ -1,0 +1,275 @@
+---
+title: "Impact Evaluation: <br>Effect Nuances"
+subtitle: "Week 9<br>REF 770: Program Evaluation"
+output-file: index
+output-ext: html
+format: revealjs
+css: assets/style.css
+echo: false
+
+html-math-method: 
+  method: mathjax
+  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+
+resources: assets/Roboto-Regular.ttf
+
+reference-location: document
+language:
+  en:
+    section-title-footnotes: Footnotes
+---
+
+## Lecture Overview
+
+- Effect Size
+- Effect Detection
+- Moderators
+- Mediators
+- Meta-Analysis
+
+## Effect Size {.smaller}
+
+- **Magnitude**: how large an effect is
+- **Effect size**: a ***standardized*** measure of effect magnitude
+  - Can be compared across outcomes in different units / scales
+- **Standardized mean difference**: most common effect size measure
+  - Difference between participant & comparison group averages, in ***standard deviation units***
+  - ***Cohen's D*** & ***Hedges' G*** are most common standardized mean diff statistics
+- Rules of thumb for education field research[^fn-kraft]:
+  - \> .20 = large
+  - .05--.20 = medium
+  - < .05 = small
+- ...but everything is context-specific!
+
+[^fn-kraft]: Kraft, M. A. (2020). Interpreting Effect Sizes of Education Interventions. *Educational Researcher*. [https://journals.sagepub.com/doi/10.3102/0013189X20912798](https://journals.sagepub.com/doi/10.3102/0013189X20912798)
+
+## Effect Estimates Contain "Noise" {#noise}
+
+- **Noise**: non-systematic error; [see appendix for demonstration](#noise-demo)
+  - (bias = systematic error)
+- Is our effect estimate real, or is it just noise?
+  - We need a ***large enough effect estimate*** that we can be ***confident it's coming from a real effect*** and not just noise
+  - "signal-to-noise ratio"
+- **Precision**: how much our estimates limit noise
+- We can increase precision by:
+  - Increasing sample size
+  - Adjusting for baseline covariates
+
+## Statistical Significance & Power
+
+- **Statistical significance**: formalized procedure for ***evaluating likelihood that effect estimates are "real"*** and not just noise
+- **Statistical power**: how ***likely we are to detect an effect***, i.e., decide it's statistically significant, given a set of factors including:
+  - Sample size
+  - Effect size
+  - Variation in outcomes (after adjusting for baseline covariates)
+
+## Minimum Detectable Effect Size
+
+- **Minimum detectable effect size (MDES)**: re-arrange the power equation to find the ***smallest effect you are likely to detect*** given the same set of factors
+- The ***larger the sample***, the ***smaller your MDES*** will be
+  - But, the ***more costly*** your study will be (if collecting data)
+- **Practical significance**: an effect size that would represent a ***meaningful change*** in outcomes
+  - No need to try to detect an effect any smaller than that
+
+## Moderators: Effect Variation
+
+- Effects may be different for different subgroups of program participants
+- **Moderator**: a variable that defines subgroups for whom program effects differ
+  - E.g. demographics, SES, pre-program outcome levels, etc.
+- **Dosage** analysis: moderator analysis that examines if effects differ for people who received different amounts of program services
+- **Implementation fidelity** can be a moderator; shows if effects varied when prog components were implemented with more fidelity
+
+## Mediator: Effect Pathways
+
+- **Mediator**: a proximal outcome that affects a more distal outcome
+- Sometimes called a "***mechanism***" that explains ***how the program affects the main outcome*** of interest
+
+```{dot}
+//| fig-height: 1.5
+//| fig-width: 7
+digraph G {
+  graph [rankdir=LR ranksep=0.45]
+  node [shape=box fontname="../../../../../Roboto-Regular" fontsize=14 margin="0.16,0.10"]
+  prog [label=<Program>]
+  mediator [label=<Mediator>]
+  outcome [label=<Main Outcome>]
+
+  edge [arrowsize=0.5]
+  prog -> mediator -> outcome
+}
+```
+
+- Can test for mediation by:
+  - Estimating effects of prog on mediator & on the more distal outcome
+  - See if there's a relationship between change in the mediator and change in the distal outcome
+
+## Meta-Analysis {.parens}
+
+- **Meta-analysis**: statistical synthesis of all evaluations on a certain program type, outcome, or other specified criteria
+- Step 1: systematically gather all published evaluations that meet criteria
+- Step 2: statistically combine effect sizes to get the average effect size & variance
+- Used to: 
+  (a) inform future evaluations
+  (b) contribute to general knowledge about programs
+
+# Appendix
+
+## Noise From <br>Randomization & Sampling Error {#noise-demo}
+
+[back to main slide](#noise){style="font-size: 0.6em;"}
+
+```{r}
+set.seed(6)
+library(dplyr, warn.conflicts = FALSE)
+# starting sample; the sample size buttons below redraw at other sizes
+n <- 100
+data <- data.frame(
+  participate = rep(c(1,0), each = n / 2)
+) |>
+  mutate(
+    group = ifelse(participate == 1, 'participant', 'comparison'),
+    # drawn the same way for both groups, as if randomly assigned
+    test_score = rnorm(n, 100, 25),
+    income = rnorm(n, 75, 25),
+    age = rnorm(n, 12, 2),
+    prek = rbinom(n, 1, .45),
+    y0 = test_score + income * .1 + age * 2 + prek * 5
+  )
+
+# hand the data to the interactive pieces below (Observable JS)
+ojs_define(ra_data = data)
+```
+
+::: {.ra}
+```{ojs}
+// blur so the arrow keys / space keep moving the slides after a click
+ra_blur = () => document.activeElement?.blur()
+
+// starts at R's sample size
+viewof ra_n = {
+  const input = Inputs.radio([100, 1000, 10000], {
+    label: "Sample size",
+    value: ra_data.participate.length,
+    format: n => n.toLocaleString()
+  })
+  input.addEventListener("input", ra_blur)
+  return input
+}
+```
+
+<!-- buttons in one row (styles in style_9.css) -->
+::: {.ra-buttons}
+```{ojs}
+// a new sample of n people, drawn like the R chunk above (keep the two in
+// sync): first half participants, second half comparison
+ra_resample = n => d3.range(n).map(i => {
+  const draw = (mean, sd) => d3.randomNormal(mean, sd)()
+  const participate = i < n / 2 ? 1 : 0
+  const test_score = draw(100, 25)
+  const income = draw(75, 25)
+  const age = draw(12, 2)
+  const prek = d3.randomBernoulli(.45)()
+  const y0 = test_score + income * .1 + age * 2 + prek * 5
+  return {participate, group: participate === 1 ? "participant" : "comparison",
+    test_score, income, age, prek, y0}
+})
+
+// R's sample at its own size, and a new draw at the others
+ra_start = ra_n === ra_data.participate.length ? transpose(ra_data) : ra_resample(ra_n)
+
+// Re-randomize shuffles who participates (still half per group);
+// Re-sample redraws the data and keeps the current assignment. both start
+// over when the sample size changes
+viewof ra_state = Inputs.button([
+  ["re-randomize", s => { ra_blur(); return {...s, assign: d3.shuffle(s.assign.slice())} }],
+  ["re-sample", s => { ra_blur(); return {...s, rows: ra_resample(ra_n)} }]
+], {value: {assign: ra_start.map(d => d.participate), rows: ra_start}})
+
+ra_assign = ra_state.assign
+ra_rows = ra_state.rows
+```
+
+```{ojs}
+viewof ra_show_full = Inputs.button("full data", {value: false, reduce: v => { ra_blur(); return !v }})
+```
+:::
+
+```{ojs}
+// data with the current assignment: participate and group follow it,
+// everything else stays with the person
+ra_current = ra_rows.map((d, i) => ({
+  ...d,
+  participate: ra_assign[i],
+  group: ra_assign[i] === 1 ? "participant" : "comparison"
+}))
+
+ra_vars = Object.keys(ra_data).filter(v => !["participate", "group"].includes(v))
+```
+
+<!-- means table, with the full data beside it (styles in style_9.css) -->
+::: {.ra-tables}
+```{ojs}
+// means of each variable by group
+ra_mean = (v, p) => d3.mean(ra_current.filter(d => d.participate === p), d => d[v])
+
+// how each variable's mean is shown (the 0/1 variables as percentages)
+ra_fmt = {
+  const pct = v => `${Math.round(v * 100)}%`
+  return {
+    test_score: v => v.toFixed(0),
+    income: v => `$${v.toFixed(0)}k`,
+    age: v => v.toFixed(1),
+    prek: pct,
+    y0: v => v.toFixed(0)
+  }
+}
+
+// name shown for each variable
+ra_labels = ({
+  test_score: "Base Test Score",
+  income: "Fam Income",
+  age: "Age",
+  prek: "Did Pre-K",
+  y0: "Y(0)"
+})
+
+// the y0 row is bold italic (styles in style_9.css)
+html`<div class="ra-means"><table>
+  <thead><tr><th>Variable</th><th>Participant</th><th>Comparison</th></tr></thead>
+  <tbody>${ra_vars.map(v => html`<tr class=${v === "y0" ? "ra-y0" : null}>
+    <td>${ra_labels[v]}</td><td>${ra_fmt[v](ra_mean(v, 1))}</td><td>${ra_fmt[v](ra_mean(v, 0))}</td>
+  </tr>`)}</tbody>
+</table></div>`
+```
+
+::: {.ra-full-wrap}
+```{ojs}
+// full data table, collapsed until the full data button is clicked.
+// participate is left out to save space (group shows the same thing)
+ra_full_cols = Object.keys(ra_data).filter(v => v !== "participate")
+
+// built once each time it's opened; ra_full.update() then rewrites the
+// cells in place when the data changes, rather than redrawing the table
+// (which flickers and loses the scroll position)
+ra_full = {
+  if (!ra_show_full) return html``
+  const fmt = x => typeof x === "number" && !Number.isInteger(x) ? x.toFixed(1) : x
+  const rows = d3.range(ra_n).map(() => ra_full_cols.map(() => html`<td></td>`))
+  const el = html`<div class="ra-full"><table>
+    <thead><tr>${ra_full_cols.map(v => html`<th>${v}</th>`)}</tr></thead>
+    <tbody>${rows.map(cells => html`<tr>${cells}</tr>`)}</tbody>
+  </table></div>`
+  el.update = data => data.forEach((d, i) => ra_full_cols.forEach((v, j) => {
+    rows[i][j].textContent = fmt(d[v])
+  }))
+  return el
+}
+```
+
+```{ojs}
+//| output: false
+ra_full.update?.(ra_current)
+```
+:::
+:::
+:::
